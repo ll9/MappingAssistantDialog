@@ -12,9 +12,25 @@ namespace ExcelReader
 {
     public partial class Form1 : Form
     {
+        Presenter Presenter { get; set; }
+        public DataTable DataTable { get; set; } = new DataTable();
+
         public Form1()
         {
             InitializeComponent();
+            Presenter = new Presenter(this);
+            FeaturesGridView.DataSource = DataTable;
+        }
+
+        private void SelectExcelButton_Click(object sender, EventArgs e)
+        {
+            using (var excelDialog = new OpenFileDialog())
+            {
+                if (excelDialog.ShowDialog() == DialogResult.OK)
+                {
+                    Presenter.FillDataTableFromExcel(excelDialog.FileName);
+                }
+            }
         }
     }
 }
