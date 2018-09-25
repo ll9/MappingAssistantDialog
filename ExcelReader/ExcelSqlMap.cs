@@ -10,12 +10,11 @@ namespace ExcelReader
     class ExcelSqlMap
     {
         public string Source { get; }
-        public string Destination { 
-            get { return Destination; }
-            set
-            {
-                Destination = Regex.Replace(value, "[^a-zA-Z0-9_.]+", "", RegexOptions.Compiled);
-            }
+        private string _destination;
+        public string Destination
+        {
+            get { return _destination; }
+            set { _destination = Regex.Replace(value, "[^a-zA-Z0-9_.]+", "", RegexOptions.Compiled); }
         }
         public bool Keep { get; set;}
 

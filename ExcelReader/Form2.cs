@@ -12,17 +12,18 @@ namespace ExcelReader
 {
     public partial class Form2 : Form
     {
-        public IEnumerable<string> HeaderNames { get; set; }
+        BindingList<ExcelSqlMap> MapList { get; set; } = new BindingList<ExcelSqlMap>();
 
         public Form2(IEnumerable<string> headerNames)
         {
             InitializeComponent();
-            HeaderNames = headerNames;
 
-            foreach (var headerName in HeaderNames)
+            foreach (var headerName in headerNames)
             {
-                KeepListBox.Items.Add(headerName);
+                MapList.Add(new ExcelSqlMap(headerName));
             }
+
+            MapGridView.DataSource = MapList;
         }
     }
 }
