@@ -29,6 +29,12 @@ namespace ExcelReader
                 if (excelDialog.ShowDialog() == DialogResult.OK)
                 {
                     Presenter.FillDataTableFromExcel(excelDialog.FileName);
+
+                    var headers = DataTable.Columns.Cast<DataColumn>()
+                        .Select(column => column.ColumnName);
+
+                    var form2 = new Form2(headers);
+                    form2.ShowDialog();
                 }
             }
         }
