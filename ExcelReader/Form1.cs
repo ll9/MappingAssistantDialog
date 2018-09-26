@@ -22,13 +22,15 @@ namespace ExcelReader
             FeaturesGridView.DataSource = DataTable;
         }
 
-        private void SelectExcelButton_Click(object sender, EventArgs e)
+        private async void SelectExcelButton_Click(object sender, EventArgs e)
         {
             using (var excelDialog = new OpenFileDialog())
             {
                 if (excelDialog.ShowDialog() == DialogResult.OK)
                 {
-                    Presenter.FillDataTableFromExcel(excelDialog.FileName);
+                    DataTable = await Task.Run(() => ExcelReader.ImportExceltoDatatable(excelDialog.FileName));
+                    FeaturesGridView.DataSource = DataTable;
+
 
                     var headers = DataTable.Columns.Cast<DataColumn>()
                         .Select(column => column.ColumnName);
