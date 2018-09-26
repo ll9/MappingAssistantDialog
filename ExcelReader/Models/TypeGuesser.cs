@@ -16,7 +16,6 @@ namespace ExcelReader.Models
                 int i;
                 for (i = 0; i < dataTable.Rows.Count; i++)
                 {
-                    //var value = values[i];
                     var value = dataTable.Rows[i][columnName].ToString();
                     if (GuessType(value) != type)
                     {

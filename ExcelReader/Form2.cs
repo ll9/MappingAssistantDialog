@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExcelReader.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,14 +14,18 @@ namespace ExcelReader
     public partial class Form2 : Form
     {
         BindingList<ExcelSqlMap> MapList { get; set; } = new BindingList<ExcelSqlMap>();
+        public DataTable OriginalTable { get; set; }
 
-        public Form2(IEnumerable<string> headerNames)
+        public Form2(DataTable originalTable)
         {
             InitializeComponent();
+            OriginalTable = originalTable;
 
-            foreach (var headerName in headerNames)
+            foreach (DataColumn column in OriginalTable.Columns)
             {
-                MapList.Add(new ExcelSqlMap(headerName));
+                var type = TypeGuesser.GuessType(OriginalTable, column.ColumnName);
+
+                MapList.Add(new ExcelSqlMap(column.ColumnName, type));
             }
 
             MapGridView.DataSource = MapList;

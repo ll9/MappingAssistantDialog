@@ -37,7 +37,7 @@
             this.MapGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.MapGridView.Location = new System.Drawing.Point(32, 37);
             this.MapGridView.Name = "MapGridView";
-            this.MapGridView.Size = new System.Drawing.Size(394, 186);
+            this.MapGridView.Size = new System.Drawing.Size(626, 230);
             this.MapGridView.TabIndex = 0;
             // 
             // Form2

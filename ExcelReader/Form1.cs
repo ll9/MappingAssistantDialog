@@ -30,10 +30,7 @@ namespace ExcelReader
                     FeaturesGridView.DataSource = DataTable;
 
 
-                    var headers = DataTable.Columns.Cast<DataColumn>()
-                        .Select(column => column.ColumnName);
-
-                    var form2 = new Form2(headers);
+                    var form2 = new Form2(DataTable);
                     form2.ShowDialog();
                 }
             }

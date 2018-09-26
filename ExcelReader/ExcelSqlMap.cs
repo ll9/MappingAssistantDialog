@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExcelReader.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,14 +18,16 @@ namespace ExcelReader
             set { _destination = Regex.Replace(value, "[^a-zA-Z0-9_.]+", "", RegexOptions.Compiled); }
         }
         public bool Keep { get; set;}
+        public DataType DataType { get; set; }
 
 
 
-        public ExcelSqlMap(string source)
+        public ExcelSqlMap(string source, DataType dataType)
         {
             Source = source;
             Destination = source;
             Keep = true;
+            DataType = dataType;
         }
 
     }
